@@ -1,0 +1,120 @@
+$headerColor: #EBE9EC;
+$bodyColor: #FBF9FC;
+$textColor: #646464;
+body {
+    margin: 0;
+    background: $bodyColor;
+    color: $textColor;
+    font-family: 'Poppins', sans-serif;
+}
+
+header {
+    background: $headerColor;
+    display: grid;
+    grid-template-columns: 8fr 1fr 1fr;
+    grid-gap: 10px;
+    text-align: right;
+}
+
+.language {
+    text-align: center;
+}
+
+.language,
+.social,
+.private {
+    padding: 5px;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.social i {
+    padding: 0 5px;
+}
+
+nav {
+    display: flex;
+    width: 95vw;
+    position: relative;
+    align-items: center;
+}
+
+nav ul {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    padding-left: 0;
+    transform: translateX(-50%);
+    justify-content: center;
+}
+
+nav img {
+    height: 50px;
+}
+
+.fa-bars {
+    font-size: 32px;
+    padding: 10px;
+}
+
+nav ul li {
+    display: inline;
+    list-style-type: none;
+    margin: 0;
+}
+
+nav ul li a {
+    text-decoration: none;
+    padding: 20px 15px;
+    color: $textColor;
+}
+
+.search {
+    position: absolute;
+    right: 0;
+}
+
+#bath a:hover {
+    background: blue;
+    color: white;
+}
+
+#garden a:hover {
+    background: green;
+}
+
+#house a:hover {
+    background: red;
+    color: white;
+}
+
+.navigation ul li a:hover {
+    color: white;
+}
+
+.search {
+    right: 0;
+}
+
+form input[type=text] {
+    padding: 15px;
+    border: none;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+form button {
+    position: absolute;
+    font-size: 15px;
+    background: transparent;
+    border: none;
+    right: 0;
+    top: 25%;
+    color: $textColor;
+    cursor: pointer;
+}
+
+.container {
+    width: 95vw;
+    margin: auto;
+}

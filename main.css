@@ -1,0 +1,127 @@
+body {
+  margin: 0;
+  background: #FBF9FC;
+  color: #646464;
+  font-family: 'Poppins', sans-serif;
+}
+
+header {
+  background: #EBE9EC;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 8fr 1fr 1fr;
+      grid-template-columns: 8fr 1fr 1fr;
+  grid-gap: 10px;
+  text-align: right;
+}
+
+.language {
+  text-align: center;
+}
+
+.language,
+.social,
+.private {
+  padding: 5px;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.social i {
+  padding: 0 5px;
+}
+
+nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 95vw;
+  position: relative;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+nav ul {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  padding-left: 0;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+nav img {
+  height: 50px;
+}
+
+.fa-bars {
+  font-size: 32px;
+  padding: 10px;
+}
+
+nav ul li {
+  display: inline;
+  list-style-type: none;
+  margin: 0;
+}
+
+nav ul li a {
+  text-decoration: none;
+  padding: 20px 15px;
+  color: #646464;
+}
+
+.search {
+  position: absolute;
+  right: 0;
+}
+
+#bath a:hover {
+  background: blue;
+  color: white;
+}
+
+#garden a:hover {
+  background: green;
+}
+
+#house a:hover {
+  background: red;
+  color: white;
+}
+
+.navigation ul li a:hover {
+  color: white;
+}
+
+.search {
+  right: 0;
+}
+
+form input[type=text] {
+  padding: 15px;
+  border: none;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+form button {
+  position: absolute;
+  font-size: 15px;
+  background: transparent;
+  border: none;
+  right: 0;
+  top: 25%;
+  color: #646464;
+  cursor: pointer;
+}
+
+.container {
+  width: 95vw;
+  margin: auto;
+}
+/*# sourceMappingURL=main.css.map */
