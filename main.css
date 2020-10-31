@@ -1,9 +1,9 @@
-@charset "UTF-8";
 body {
   margin: 0;
   background: #FBF9FC;
   color: #646464;
   font-family: 'Poppins', sans-serif;
+  font-weight: 300;
 }
 
 header {
@@ -28,98 +28,89 @@ header {
   font-weight: bold;
 }
 
+.navigation {
+  height: auto;
+  width: 60%;
+}
+
 .social i {
   padding: 0 5px;
 }
 
 nav {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   width: 95vw;
-  position: relative;
+  margin: auto;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: fit-content(80px) fit-content(40px) auto fit-content(220px);
+      grid-template-columns: fit-content(80px) fit-content(40px) auto fit-content(220px);
+  grid-gap: 10px;
+      grid-template-areas: "logo hamburger navigation search";
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
 }
 
-nav ul {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  padding-left: 0;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-nav img {
+.logo img {
   height: 50px;
 }
 
-.fa-bars {
-  font-size: 32px;
-  padding: 10px;
-  cursor: pointer;
+.navigation {
+  width: auto;
+  text-align: center;
 }
 
-nav ul li {
+.navigation ul li {
   display: inline;
   list-style-type: none;
-  margin: 0;
 }
 
-nav ul li a {
+.navigation ul li a {
   text-decoration: none;
-  padding: 20px 15px;
-  color: #646464;
-}
-
-.search {
-  position: absolute;
-  right: 0;
+  padding: 15px 20px;
 }
 
 .bath a:hover {
-  background: blue;
+  background: #009EE2;
   color: white;
 }
 
 .garden a:hover {
-  background: green;
+  background: #51AD32;
+  color: white;
 }
 
 .house a:hover {
-  background: red;
+  background: #E63329;
   color: white;
 }
 
-.navigation ul li a:hover {
-  color: white;
+.hamburger {
+  font-size: 30px;
 }
 
 .search {
-  right: 0;
+  position: relative;
 }
 
 form input[type=text] {
-  padding: 15px;
+  font-size: 20px;
+  width: 100%;
+  padding: 10px;
   border: none;
-  font-size: 16px;
-  border-radius: 5px;
 }
 
 form button {
   position: absolute;
-  font-size: 15px;
-  background: transparent;
+  top: 10px;
+  right: -10px;
+  font-size: 20px;
+  background: none;
   border: none;
-  right: 0;
-  top: 25%;
-  color: #646464;
-  cursor: pointer;
+}
+
+.mobile-hamburger {
+  display: none;
 }
 
 .main-content {
@@ -131,7 +122,6 @@ form button {
 .image-slider {
   position: relative;
   height: 90vh;
-  background: red;
 }
 
 .container {
@@ -174,906 +164,236 @@ form button {
   display: none;
 }
 
-/*
- * CSS Fadeshow by @alexerlandsson
- * This is a fadeshow built in CSS and with customization in focus.
- * Supports quick navigation, prev/next navigation and autoplay.
- * 
- * For better documentation and implementation guide, check out the GitHub repository:
- * https://github.com/alexerlandsson/css-fadeshow
-*/
-/*
- * ===== VARIABLES =====
- *
- * Change these variables to match your preferences. For a more detailed
- * description of what each variable do, visit https://github.com/alexerlandsson/css-fadeshow
- */
-/*
-  * ===== MIXINS =====
-  *
-  * This section contains mixin used
-  * Do not change anything here unless you know what you are doing.
-  */
-/* Mixins to handle prefixes */
-/* Mixins to handle Quick Navigation Button states */
-/*
-  * ===== FADESHOW =====
-  *
-  * Base functionality for the fadeshow.
-  * Do not change anything here unless you know what you are doing.
-  */
-[data-am-fadeshow] {
-  position: relative;
+/* Slideshow container */
+.slideshow-container {
+  width: 95vw;
+  height: 90vh;
+  margin: auto;
+}
+
+.mySlides {
+  width: 95vw;
+  height: 90vh;
+}
+
+.image-slide {
+  -o-object-fit: cover;
+     object-fit: cover;
   width: 100%;
   height: 100%;
-  overflow: hidden;
-  background-color: #fff;
-  /* Slides */
-  /* Quick Navigation */
-  /* Prev/Next Navigation */
-  /* Base functionality */
-  /* Autohide Prev/Next Navigation */
 }
 
-[data-am-fadeshow] .fs-slide {
+/* Hide the images by default */
+/* .mySlides {
+    display: none;
+} */
+/* Next & previous buttons */
+.prev,
+.next {
+  cursor: pointer;
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  opacity: 0;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  -webkit-transition: opacity 1s ease;
-  transition: opacity 1s ease;
-  /* Display first child on load */
-}
-
-[data-am-fadeshow] .fs-slide:first-child {
-  opacity: 1;
-}
-
-[data-am-fadeshow] .fs-quick-nav {
-  position: absolute;
-  bottom: 15px;
-  left: 50%;
-  z-index: 1;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: black;
+  font-weight: bold;
+  font-size: 18px;
+  -webkit-transition: 0.6s ease;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
   -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  -webkit-transform: translateX(-50%);
-  transform: translateX(-50%);
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
-[data-am-fadeshow] .fs-quick-btn {
-  display: inline-block;
-  width: 15px;
-  height: 15px;
-  margin: 0 2px;
-  border-radius: 50%;
-  cursor: pointer;
-  -webkit-transition: opacity 200ms ease;
-  transition: opacity 200ms ease;
-  background-color: rgba(255, 255, 255, 0.8);
-  /* Set active state to first button on load */
-}
-
-[data-am-fadeshow] .fs-quick-btn:hover {
-  opacity: 0.8;
-}
-
-[data-am-fadeshow] .fs-quick-btn:first-child {
-  background-color: coral;
-}
-
-[data-am-fadeshow] .fs-prev-btn, [data-am-fadeshow] .fs-next-btn {
-  position: absolute;
-  display: none;
-  top: 0;
-  bottom: 0;
-  width: 100px;
-  cursor: pointer;
-  font-family: sans-serif;
-  background-color: rgba(255, 255, 255, 0);
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  -webkit-transition: all 200ms ease;
-  transition: all 200ms ease;
-}
-
-@media (max-width: 500px) {
-  [data-am-fadeshow] .fs-prev-btn, [data-am-fadeshow] .fs-next-btn {
-    width: 50%;
-  }
-}
-
-[data-am-fadeshow] .fs-prev-btn:before, [data-am-fadeshow] .fs-next-btn:before {
-  position: absolute;
-  top: 50%;
-  font-size: 3vw;
-  color: rgba(255, 255, 255, 0.5);
-}
-
-[data-am-fadeshow] .fs-prev-btn:hover, [data-am-fadeshow] .fs-next-btn:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-@media (max-width: 500px) {
-  [data-am-fadeshow] .fs-prev-btn:hover, [data-am-fadeshow] .fs-next-btn:hover {
-    background-color: rgba(255, 255, 255, 0);
-  }
-}
-
-[data-am-fadeshow] .fs-prev-btn {
-  left: 0;
-  -webkit-transform: translateX(-100%);
-  transform: translateX(-100%);
-}
-
-[data-am-fadeshow] .fs-prev-btn:before {
-  content: "❮";
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-
-@media (max-width: 500px) {
-  [data-am-fadeshow] .fs-prev-btn:before {
-    left: 30px;
-  }
-}
-
-@media (max-width: 500px) {
-  [data-am-fadeshow] .fs-prev-btn {
-    -webkit-transform: translate(0);
-    transform: translate(0);
-  }
-}
-
-[data-am-fadeshow] .fs-next-btn {
+/* Position the "next button" to the right */
+.next {
   right: 0;
-  -webkit-transform: translateX(100%);
-  transform: translateX(100%);
-}
-
-[data-am-fadeshow] .fs-next-btn:before {
-  content: "❯";
-  right: 50%;
-  -webkit-transform: translate(50%, -50%);
-  transform: translate(50%, -50%);
-}
-
-@media (max-width: 500px) {
-  [data-am-fadeshow] .fs-next-btn:before {
-    right: 30px;
-  }
-}
-
-@media (max-width: 500px) {
-  [data-am-fadeshow] .fs-next-btn {
-    -webkit-transform: translate(0);
-    transform: translate(0);
-  }
-}
-
-[data-am-fadeshow] input[type="radio"] {
-  position: fixed;
-  top: -9999px;
-}
-
-[data-am-fadeshow] input[type="radio"]:checked {
-  /* This loop handles the slide switching and quick navigation active state */
-  /* Hide navigation if only one slide */
-}
-
-[data-am-fadeshow] input[type="radio"]:checked:nth-of-type(5) {
-  /* Show slide */
-  /* Add active state to dot */
-}
-
-[data-am-fadeshow] input[type="radio"]:checked:nth-of-type(5) ~ .fs-slides .fs-slide {
-  opacity: 0;
-  -webkit-animation: none !important;
-  animation: none !important;
-}
-
-[data-am-fadeshow] input[type="radio"]:checked:nth-of-type(5) ~ .fs-slides .fs-slide:nth-child(5) {
-  opacity: 1;
-}
-
-[data-am-fadeshow] input[type="radio"]:checked:nth-of-type(5) ~ .fs-quick-nav .fs-quick-btn {
-  background-color: rgba(255, 255, 255, 0.8);
-  /* Cancel autoplay */
-  -webkit-animation: none !important;
-  animation: none !important;
-}
-
-[data-am-fadeshow] input[type="radio"]:checked:nth-of-type(5) ~ .fs-quick-nav .fs-quick-btn:nth-child(5) {
-  background-color: coral;
-}
-
-[data-am-fadeshow] input[type="radio"]:checked:nth-of-type(5) ~ .fs-quick-nav .fs-quick-btn:nth-child(5):hover {
-  opacity: 1;
-}
-
-[data-am-fadeshow] input[type="radio"]:checked:nth-of-type(4) {
-  /* Show slide */
-  /* Add active state to dot */
-}
-
-[data-am-fadeshow] input[type="radio"]:checked:nth-of-type(4) ~ .fs-slides .fs-slide {
-  opacity: 0;
-  -webkit-animation: none !important;
-  animation: none !important;
-}
-
-[data-am-fadeshow] input[type="radio"]:checked:nth-of-type(4) ~ .fs-slides .fs-slide:nth-child(4) {
-  opacity: 1;
-}
-
-[data-am-fadeshow] input[type="radio"]:checked:nth-of-type(4) ~ .fs-quick-nav .fs-quick-btn {
-  background-color: rgba(255, 255, 255, 0.8);
-  /* Cancel autoplay */
-  -webkit-animation: none !important;
-  animation: none !important;
-}
-
-[data-am-fadeshow] input[type="radio"]:checked:nth-of-type(4) ~ .fs-quick-nav .fs-quick-btn:nth-child(4) {
-  background-color: coral;
-}
-
-[data-am-fadeshow] input[type="radio"]:checked:nth-of-type(4) ~ .fs-quick-nav .fs-quick-btn:nth-child(4):hover {
-  opacity: 1;
-}
-
-[data-am-fadeshow] input[type="radio"]:checked:nth-of-type(3) {
-  /* Show slide */
-  /* Add active state to dot */
-}
-
-[data-am-fadeshow] input[type="radio"]:checked:nth-of-type(3) ~ .fs-slides .fs-slide {
-  opacity: 0;
-  -webkit-animation: none !important;
-  animation: none !important;
-}
-
-[data-am-fadeshow] input[type="radio"]:checked:nth-of-type(3) ~ .fs-slides .fs-slide:nth-child(3) {
-  opacity: 1;
-}
-
-[data-am-fadeshow] input[type="radio"]:checked:nth-of-type(3) ~ .fs-quick-nav .fs-quick-btn {
-  background-color: rgba(255, 255, 255, 0.8);
-  /* Cancel autoplay */
-  -webkit-animation: none !important;
-  animation: none !important;
-}
-
-[data-am-fadeshow] input[type="radio"]:checked:nth-of-type(3) ~ .fs-quick-nav .fs-quick-btn:nth-child(3) {
-  background-color: coral;
-}
-
-[data-am-fadeshow] input[type="radio"]:checked:nth-of-type(3) ~ .fs-quick-nav .fs-quick-btn:nth-child(3):hover {
-  opacity: 1;
-}
-
-[data-am-fadeshow] input[type="radio"]:checked:nth-of-type(2) {
-  /* Show slide */
-  /* Add active state to dot */
-}
-
-[data-am-fadeshow] input[type="radio"]:checked:nth-of-type(2) ~ .fs-slides .fs-slide {
-  opacity: 0;
-  -webkit-animation: none !important;
-  animation: none !important;
-}
-
-[data-am-fadeshow] input[type="radio"]:checked:nth-of-type(2) ~ .fs-slides .fs-slide:nth-child(2) {
-  opacity: 1;
-}
-
-[data-am-fadeshow] input[type="radio"]:checked:nth-of-type(2) ~ .fs-quick-nav .fs-quick-btn {
-  background-color: rgba(255, 255, 255, 0.8);
-  /* Cancel autoplay */
-  -webkit-animation: none !important;
-  animation: none !important;
-}
-
-[data-am-fadeshow] input[type="radio"]:checked:nth-of-type(2) ~ .fs-quick-nav .fs-quick-btn:nth-child(2) {
-  background-color: coral;
-}
-
-[data-am-fadeshow] input[type="radio"]:checked:nth-of-type(2) ~ .fs-quick-nav .fs-quick-btn:nth-child(2):hover {
-  opacity: 1;
-}
-
-[data-am-fadeshow] input[type="radio"]:checked:nth-of-type(1) {
-  /* Show slide */
-  /* Add active state to dot */
-}
-
-[data-am-fadeshow] input[type="radio"]:checked:nth-of-type(1) ~ .fs-slides .fs-slide {
-  opacity: 0;
-  -webkit-animation: none !important;
-  animation: none !important;
-}
-
-[data-am-fadeshow] input[type="radio"]:checked:nth-of-type(1) ~ .fs-slides .fs-slide:nth-child(1) {
-  opacity: 1;
-}
-
-[data-am-fadeshow] input[type="radio"]:checked:nth-of-type(1) ~ .fs-quick-nav .fs-quick-btn {
-  background-color: rgba(255, 255, 255, 0.8);
-  /* Cancel autoplay */
-  -webkit-animation: none !important;
-  animation: none !important;
-}
-
-[data-am-fadeshow] input[type="radio"]:checked:nth-of-type(1) ~ .fs-quick-nav .fs-quick-btn:nth-child(1) {
-  background-color: coral;
-}
-
-[data-am-fadeshow] input[type="radio"]:checked:nth-of-type(1) ~ .fs-quick-nav .fs-quick-btn:nth-child(1):hover {
-  opacity: 1;
-}
-
-[data-am-fadeshow] input[type="radio"]:checked:first-of-type:last-of-type ~ .fs-quick-nav,
-[data-am-fadeshow] input[type="radio"]:checked:first-of-type:last-of-type ~ .fs-prev-nav,
-[data-am-fadeshow] input[type="radio"]:checked:first-of-type:last-of-type ~ .fs-next-nav {
-  display: none !important;
-}
-
-[data-am-fadeshow]:hover .fs-prev-btn,
-[data-am-fadeshow]:hover .fs-next-btn {
-  -webkit-transform: translateX(0);
-  transform: translateX(0);
-}
-
-/*
-  * ===== PREV/NEXT NAVIGATION =====
-  *
-  * This section handles the prev/next navigation.
-  */
-/* Handle Prev/Next buttons */
-[data-am-fadeshow~="next-prev-navigation"] {
-  /* Display first pair of Prev/Next Buttons on load */
-}
-
-[data-am-fadeshow~="next-prev-navigation"] input[type="radio"]:checked:nth-of-type(5) {
-  /* Show previous button */
-  /* Show next button */
-  /* Show last prev button if first slide */
-  /* Show first next button if last slide */
-}
-
-[data-am-fadeshow~="next-prev-navigation"] input[type="radio"]:checked:nth-of-type(5) ~ .fs-prev-nav .fs-prev-btn {
-  display: none;
-}
-
-[data-am-fadeshow~="next-prev-navigation"] input[type="radio"]:checked:nth-of-type(5) ~ .fs-prev-nav .fs-prev-btn:nth-child(4) {
-  display: block;
-}
-
-[data-am-fadeshow~="next-prev-navigation"] input[type="radio"]:checked:nth-of-type(5):first-of-type ~ .fs-prev-nav .fs-prev-btn:last-child {
-  display: block;
-}
-
-[data-am-fadeshow~="next-prev-navigation"] input[type="radio"]:checked:nth-of-type(5):last-of-type ~ .fs-next-nav .fs-next-btn:first-child {
-  display: block;
-}
-
-[data-am-fadeshow~="next-prev-navigation"] input[type="radio"]:checked:nth-of-type(4) {
-  /* Show previous button */
-  /* Show next button */
-  /* Show last prev button if first slide */
-  /* Show first next button if last slide */
-}
-
-[data-am-fadeshow~="next-prev-navigation"] input[type="radio"]:checked:nth-of-type(4) ~ .fs-prev-nav .fs-prev-btn {
-  display: none;
-}
-
-[data-am-fadeshow~="next-prev-navigation"] input[type="radio"]:checked:nth-of-type(4) ~ .fs-prev-nav .fs-prev-btn:nth-child(3) {
-  display: block;
-}
-
-[data-am-fadeshow~="next-prev-navigation"] input[type="radio"]:checked:nth-of-type(4) ~ .fs-next-nav .fs-next-btn {
-  display: none;
-}
-
-[data-am-fadeshow~="next-prev-navigation"] input[type="radio"]:checked:nth-of-type(4) ~ .fs-next-nav .fs-next-btn:nth-child(5) {
-  display: block;
-}
-
-[data-am-fadeshow~="next-prev-navigation"] input[type="radio"]:checked:nth-of-type(4):first-of-type ~ .fs-prev-nav .fs-prev-btn:last-child {
-  display: block;
-}
-
-[data-am-fadeshow~="next-prev-navigation"] input[type="radio"]:checked:nth-of-type(4):last-of-type ~ .fs-next-nav .fs-next-btn:first-child {
-  display: block;
-}
-
-[data-am-fadeshow~="next-prev-navigation"] input[type="radio"]:checked:nth-of-type(3) {
-  /* Show previous button */
-  /* Show next button */
-  /* Show last prev button if first slide */
-  /* Show first next button if last slide */
-}
-
-[data-am-fadeshow~="next-prev-navigation"] input[type="radio"]:checked:nth-of-type(3) ~ .fs-prev-nav .fs-prev-btn {
-  display: none;
-}
-
-[data-am-fadeshow~="next-prev-navigation"] input[type="radio"]:checked:nth-of-type(3) ~ .fs-prev-nav .fs-prev-btn:nth-child(2) {
-  display: block;
-}
-
-[data-am-fadeshow~="next-prev-navigation"] input[type="radio"]:checked:nth-of-type(3) ~ .fs-next-nav .fs-next-btn {
-  display: none;
-}
-
-[data-am-fadeshow~="next-prev-navigation"] input[type="radio"]:checked:nth-of-type(3) ~ .fs-next-nav .fs-next-btn:nth-child(4) {
-  display: block;
-}
-
-[data-am-fadeshow~="next-prev-navigation"] input[type="radio"]:checked:nth-of-type(3):first-of-type ~ .fs-prev-nav .fs-prev-btn:last-child {
-  display: block;
-}
-
-[data-am-fadeshow~="next-prev-navigation"] input[type="radio"]:checked:nth-of-type(3):last-of-type ~ .fs-next-nav .fs-next-btn:first-child {
-  display: block;
-}
-
-[data-am-fadeshow~="next-prev-navigation"] input[type="radio"]:checked:nth-of-type(2) {
-  /* Show previous button */
-  /* Show next button */
-  /* Show last prev button if first slide */
-  /* Show first next button if last slide */
-}
-
-[data-am-fadeshow~="next-prev-navigation"] input[type="radio"]:checked:nth-of-type(2) ~ .fs-prev-nav .fs-prev-btn {
-  display: none;
-}
-
-[data-am-fadeshow~="next-prev-navigation"] input[type="radio"]:checked:nth-of-type(2) ~ .fs-prev-nav .fs-prev-btn:nth-child(1) {
-  display: block;
-}
-
-[data-am-fadeshow~="next-prev-navigation"] input[type="radio"]:checked:nth-of-type(2) ~ .fs-next-nav .fs-next-btn {
-  display: none;
-}
-
-[data-am-fadeshow~="next-prev-navigation"] input[type="radio"]:checked:nth-of-type(2) ~ .fs-next-nav .fs-next-btn:nth-child(3) {
-  display: block;
-}
-
-[data-am-fadeshow~="next-prev-navigation"] input[type="radio"]:checked:nth-of-type(2):first-of-type ~ .fs-prev-nav .fs-prev-btn:last-child {
-  display: block;
-}
-
-[data-am-fadeshow~="next-prev-navigation"] input[type="radio"]:checked:nth-of-type(2):last-of-type ~ .fs-next-nav .fs-next-btn:first-child {
-  display: block;
-}
-
-[data-am-fadeshow~="next-prev-navigation"] input[type="radio"]:checked:nth-of-type(1) {
-  /* Show previous button */
-  /* Show next button */
-  /* Show last prev button if first slide */
-  /* Show first next button if last slide */
-}
-
-[data-am-fadeshow~="next-prev-navigation"] input[type="radio"]:checked:nth-of-type(1) ~ .fs-next-nav .fs-next-btn {
-  display: none;
-}
-
-[data-am-fadeshow~="next-prev-navigation"] input[type="radio"]:checked:nth-of-type(1) ~ .fs-next-nav .fs-next-btn:nth-child(2) {
-  display: block;
-}
-
-[data-am-fadeshow~="next-prev-navigation"] input[type="radio"]:checked:nth-of-type(1):first-of-type ~ .fs-prev-nav .fs-prev-btn:last-child {
-  display: block;
-}
-
-[data-am-fadeshow~="next-prev-navigation"] input[type="radio"]:checked:nth-of-type(1):last-of-type ~ .fs-next-nav .fs-next-btn:first-child {
-  display: block;
-}
-
-[data-am-fadeshow~="next-prev-navigation"] .fs-prev-btn:last-child {
-  display: block;
-}
-
-[data-am-fadeshow~="next-prev-navigation"] .fs-next-btn:nth-child(2) {
-  display: block;
-}
-
-/*
-  * ===== AUTOPLAY =====
-  *
-  * Functions to handle autoplay.
-  * If you're not going to use autoplay, set $autoplay to false.
-  * This part tends to compile into a lot of uneccesary CSS otherwise.
-  */
-@keyframes quickNavAnimation-5 {
-  0% {
-    background-color: rgba(255, 255, 255, 0.8);
-  }
-  4%,
-  20% {
-    background-color: coral;
-  }
-  24%,
-  100% {
-    background-color: rgba(255, 255, 255, 0.8);
-  }
-}
-
-@-webkit-keyframes quickNavAnimation-5 {
-  0% {
-    background-color: rgba(255, 255, 255, 0.8);
-  }
-  4%,
-  20% {
-    background-color: coral;
-  }
-  24%,
-  100% {
-    background-color: rgba(255, 255, 255, 0.8);
-  }
-}
-
-@keyframes slidesAnimation-5 {
-  0% {
-    opacity: 0;
-  }
-  4%,
-  20% {
-    opacity: 1;
-  }
-  24%,
-  100% {
-    opacity: 0;
-  }
-}
-
-@-webkit-keyframes slidesAnimation-5 {
-  0% {
-    opacity: 0;
-  }
-  4%,
-  20% {
-    opacity: 1;
-  }
-  24%,
-  100% {
-    opacity: 0;
-  }
-}
-
-[data-am-fadeshow~="autoplay"] input[type="radio"]:nth-of-type(5):last-of-type {
-  /* Slide animation */
-  /* Quick navigation animation */
-  /* Animation Delay */
-}
-
-[data-am-fadeshow~="autoplay"] input[type="radio"]:nth-of-type(5):last-of-type ~ .fs-slides .fs-slide {
-  -webkit-animation: slidesAnimation-5 25s infinite;
-  animation: slidesAnimation-5 25s infinite;
-}
-
-[data-am-fadeshow~="autoplay"] input[type="radio"]:nth-of-type(5):last-of-type ~ .fs-quick-nav .fs-quick-btn {
-  -webkit-animation: quickNavAnimation-5 25s infinite;
-  animation: quickNavAnimation-5 25s infinite;
-}
-
-[data-am-fadeshow~="autoplay"] input[type="radio"]:nth-of-type(5):last-of-type ~ .fs-slides .fs-slide:nth-child(1),
-[data-am-fadeshow~="autoplay"] input[type="radio"]:nth-of-type(5):last-of-type ~ .fs-quick-nav .fs-quick-btn:nth-child(1) {
-  -webkit-animation-delay: -1s;
-  animation-delay: -1s;
-}
-
-[data-am-fadeshow~="autoplay"] input[type="radio"]:nth-of-type(5):last-of-type ~ .fs-slides .fs-slide:nth-child(2),
-[data-am-fadeshow~="autoplay"] input[type="radio"]:nth-of-type(5):last-of-type ~ .fs-quick-nav .fs-quick-btn:nth-child(2) {
-  -webkit-animation-delay: 4s;
-  animation-delay: 4s;
-}
-
-[data-am-fadeshow~="autoplay"] input[type="radio"]:nth-of-type(5):last-of-type ~ .fs-slides .fs-slide:nth-child(3),
-[data-am-fadeshow~="autoplay"] input[type="radio"]:nth-of-type(5):last-of-type ~ .fs-quick-nav .fs-quick-btn:nth-child(3) {
-  -webkit-animation-delay: 9s;
-  animation-delay: 9s;
-}
-
-[data-am-fadeshow~="autoplay"] input[type="radio"]:nth-of-type(5):last-of-type ~ .fs-slides .fs-slide:nth-child(4),
-[data-am-fadeshow~="autoplay"] input[type="radio"]:nth-of-type(5):last-of-type ~ .fs-quick-nav .fs-quick-btn:nth-child(4) {
-  -webkit-animation-delay: 14s;
-  animation-delay: 14s;
-}
-
-[data-am-fadeshow~="autoplay"] input[type="radio"]:nth-of-type(5):last-of-type ~ .fs-slides .fs-slide:nth-child(5),
-[data-am-fadeshow~="autoplay"] input[type="radio"]:nth-of-type(5):last-of-type ~ .fs-quick-nav .fs-quick-btn:nth-child(5) {
-  -webkit-animation-delay: 19s;
-  animation-delay: 19s;
-}
-
-@keyframes quickNavAnimation-4 {
-  0% {
-    background-color: rgba(255, 255, 255, 0.8);
-  }
-  5%,
-  25% {
-    background-color: coral;
-  }
-  30%,
-  100% {
-    background-color: rgba(255, 255, 255, 0.8);
-  }
-}
-
-@-webkit-keyframes quickNavAnimation-4 {
-  0% {
-    background-color: rgba(255, 255, 255, 0.8);
-  }
-  5%,
-  25% {
-    background-color: coral;
-  }
-  30%,
-  100% {
-    background-color: rgba(255, 255, 255, 0.8);
-  }
-}
-
-@keyframes slidesAnimation-4 {
-  0% {
-    opacity: 0;
-  }
-  5%,
-  25% {
-    opacity: 1;
-  }
-  30%,
-  100% {
-    opacity: 0;
-  }
-}
-
-@-webkit-keyframes slidesAnimation-4 {
-  0% {
-    opacity: 0;
-  }
-  5%,
-  25% {
-    opacity: 1;
-  }
-  30%,
-  100% {
-    opacity: 0;
-  }
-}
-
-[data-am-fadeshow~="autoplay"] input[type="radio"]:nth-of-type(4):last-of-type {
-  /* Slide animation */
-  /* Quick navigation animation */
-  /* Animation Delay */
-}
-
-[data-am-fadeshow~="autoplay"] input[type="radio"]:nth-of-type(4):last-of-type ~ .fs-slides .fs-slide {
-  -webkit-animation: slidesAnimation-4 20s infinite;
-  animation: slidesAnimation-4 20s infinite;
-}
-
-[data-am-fadeshow~="autoplay"] input[type="radio"]:nth-of-type(4):last-of-type ~ .fs-quick-nav .fs-quick-btn {
-  -webkit-animation: quickNavAnimation-4 20s infinite;
-  animation: quickNavAnimation-4 20s infinite;
-}
-
-[data-am-fadeshow~="autoplay"] input[type="radio"]:nth-of-type(4):last-of-type ~ .fs-slides .fs-slide:nth-child(1),
-[data-am-fadeshow~="autoplay"] input[type="radio"]:nth-of-type(4):last-of-type ~ .fs-quick-nav .fs-quick-btn:nth-child(1) {
-  -webkit-animation-delay: -1s;
-  animation-delay: -1s;
-}
-
-[data-am-fadeshow~="autoplay"] input[type="radio"]:nth-of-type(4):last-of-type ~ .fs-slides .fs-slide:nth-child(2),
-[data-am-fadeshow~="autoplay"] input[type="radio"]:nth-of-type(4):last-of-type ~ .fs-quick-nav .fs-quick-btn:nth-child(2) {
-  -webkit-animation-delay: 4s;
-  animation-delay: 4s;
-}
-
-[data-am-fadeshow~="autoplay"] input[type="radio"]:nth-of-type(4):last-of-type ~ .fs-slides .fs-slide:nth-child(3),
-[data-am-fadeshow~="autoplay"] input[type="radio"]:nth-of-type(4):last-of-type ~ .fs-quick-nav .fs-quick-btn:nth-child(3) {
-  -webkit-animation-delay: 9s;
-  animation-delay: 9s;
-}
-
-[data-am-fadeshow~="autoplay"] input[type="radio"]:nth-of-type(4):last-of-type ~ .fs-slides .fs-slide:nth-child(4),
-[data-am-fadeshow~="autoplay"] input[type="radio"]:nth-of-type(4):last-of-type ~ .fs-quick-nav .fs-quick-btn:nth-child(4) {
-  -webkit-animation-delay: 14s;
-  animation-delay: 14s;
-}
-
-@keyframes quickNavAnimation-3 {
-  0% {
-    background-color: rgba(255, 255, 255, 0.8);
-  }
-  6.66667%,
-  33.33333% {
-    background-color: coral;
-  }
-  40%,
-  100% {
-    background-color: rgba(255, 255, 255, 0.8);
-  }
-}
-
-@-webkit-keyframes quickNavAnimation-3 {
-  0% {
-    background-color: rgba(255, 255, 255, 0.8);
-  }
-  6.66667%,
-  33.33333% {
-    background-color: coral;
-  }
-  40%,
-  100% {
-    background-color: rgba(255, 255, 255, 0.8);
-  }
-}
-
-@keyframes slidesAnimation-3 {
-  0% {
-    opacity: 0;
-  }
-  6.66667%,
-  33.33333% {
-    opacity: 1;
-  }
-  40%,
-  100% {
-    opacity: 0;
-  }
-}
-
-@-webkit-keyframes slidesAnimation-3 {
-  0% {
-    opacity: 0;
-  }
-  6.66667%,
-  33.33333% {
-    opacity: 1;
-  }
-  40%,
-  100% {
-    opacity: 0;
-  }
-}
-
-[data-am-fadeshow~="autoplay"] input[type="radio"]:nth-of-type(3):last-of-type {
-  /* Slide animation */
-  /* Quick navigation animation */
-  /* Animation Delay */
-}
-
-[data-am-fadeshow~="autoplay"] input[type="radio"]:nth-of-type(3):last-of-type ~ .fs-slides .fs-slide {
-  -webkit-animation: slidesAnimation-3 15s infinite;
-  animation: slidesAnimation-3 15s infinite;
-}
-
-[data-am-fadeshow~="autoplay"] input[type="radio"]:nth-of-type(3):last-of-type ~ .fs-quick-nav .fs-quick-btn {
-  -webkit-animation: quickNavAnimation-3 15s infinite;
-  animation: quickNavAnimation-3 15s infinite;
-}
-
-[data-am-fadeshow~="autoplay"] input[type="radio"]:nth-of-type(3):last-of-type ~ .fs-slides .fs-slide:nth-child(1),
-[data-am-fadeshow~="autoplay"] input[type="radio"]:nth-of-type(3):last-of-type ~ .fs-quick-nav .fs-quick-btn:nth-child(1) {
-  -webkit-animation-delay: -1s;
-  animation-delay: -1s;
-}
-
-[data-am-fadeshow~="autoplay"] input[type="radio"]:nth-of-type(3):last-of-type ~ .fs-slides .fs-slide:nth-child(2),
-[data-am-fadeshow~="autoplay"] input[type="radio"]:nth-of-type(3):last-of-type ~ .fs-quick-nav .fs-quick-btn:nth-child(2) {
-  -webkit-animation-delay: 4s;
-  animation-delay: 4s;
-}
-
-[data-am-fadeshow~="autoplay"] input[type="radio"]:nth-of-type(3):last-of-type ~ .fs-slides .fs-slide:nth-child(3),
-[data-am-fadeshow~="autoplay"] input[type="radio"]:nth-of-type(3):last-of-type ~ .fs-quick-nav .fs-quick-btn:nth-child(3) {
-  -webkit-animation-delay: 9s;
-  animation-delay: 9s;
-}
-
-@keyframes quickNavAnimation-2 {
-  0% {
-    background-color: rgba(255, 255, 255, 0.8);
-  }
-  10%,
-  50% {
-    background-color: coral;
-  }
-  60%,
-  100% {
-    background-color: rgba(255, 255, 255, 0.8);
-  }
-}
-
-@-webkit-keyframes quickNavAnimation-2 {
-  0% {
-    background-color: rgba(255, 255, 255, 0.8);
-  }
-  10%,
-  50% {
-    background-color: coral;
-  }
-  60%,
-  100% {
-    background-color: rgba(255, 255, 255, 0.8);
-  }
-}
-
-@keyframes slidesAnimation-2 {
-  0% {
-    opacity: 0;
-  }
-  10%,
-  50% {
-    opacity: 1;
-  }
-  60%,
-  100% {
-    opacity: 0;
-  }
-}
-
-@-webkit-keyframes slidesAnimation-2 {
-  0% {
-    opacity: 0;
-  }
-  10%,
-  50% {
-    opacity: 1;
-  }
-  60%,
-  100% {
-    opacity: 0;
-  }
-}
-
-[data-am-fadeshow~="autoplay"] input[type="radio"]:nth-of-type(2):last-of-type {
-  /* Slide animation */
-  /* Quick navigation animation */
-  /* Animation Delay */
-}
-
-[data-am-fadeshow~="autoplay"] input[type="radio"]:nth-of-type(2):last-of-type ~ .fs-slides .fs-slide {
-  -webkit-animation: slidesAnimation-2 10s infinite;
-  animation: slidesAnimation-2 10s infinite;
-}
-
-[data-am-fadeshow~="autoplay"] input[type="radio"]:nth-of-type(2):last-of-type ~ .fs-quick-nav .fs-quick-btn {
-  -webkit-animation: quickNavAnimation-2 10s infinite;
-  animation: quickNavAnimation-2 10s infinite;
-}
-
-[data-am-fadeshow~="autoplay"] input[type="radio"]:nth-of-type(2):last-of-type ~ .fs-slides .fs-slide:nth-child(1),
-[data-am-fadeshow~="autoplay"] input[type="radio"]:nth-of-type(2):last-of-type ~ .fs-quick-nav .fs-quick-btn:nth-child(1) {
-  -webkit-animation-delay: -1s;
-  animation-delay: -1s;
-}
-
-[data-am-fadeshow~="autoplay"] input[type="radio"]:nth-of-type(2):last-of-type ~ .fs-slides .fs-slide:nth-child(2),
-[data-am-fadeshow~="autoplay"] input[type="radio"]:nth-of-type(2):last-of-type ~ .fs-quick-nav .fs-quick-btn:nth-child(2) {
-  -webkit-animation-delay: 4s;
-  animation-delay: 4s;
-}
-
-.snippet {
-  position: relative;
-  top: 50%;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* The dots/bullets/indicators */
+.dots {
+  position: absolute;
+  text-align: center;
+  top: 100px;
   left: 50%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
-  height: 100%;
-  width: 600px;
+}
+
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: white;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.active {
+  background-color: black;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {
+    opacity: .4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: .4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.snippet {
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  bottom: 100px;
+  width: 500px;
+}
+
+.snippet-head {
+  background: red;
+  padding: 20px;
   margin: 0;
+  display: inline-block;
+}
+
+.snippet-content {
+  padding: 10px;
+  background: #FBF9FC;
+  margin: 0;
+}
+
+.snippet-content h2 {
   padding: 0;
+  font-weight: 700;
+}
+
+.snippet-content p {
+  font-size: 14px;
+}
+
+.snippet-info {
+  float: right;
+  background: #F51E30;
+  padding: 20px;
+  margin: 0;
+}
+
+.snippet a {
+  color: white;
+  text-decoration: none;
+}
+
+.about {
+  margin: auto;
+  width: 50%;
+  text-align: center;
+  padding: 20px;
+}
+
+.about p {
+  padding: 20px;
+}
+
+.about a {
+  background: #F51E30;
+  padding: 20px;
+  color: white;
+  text-decoration: none;
+}
+
+@media (max-width: 800px) {
+  header {
+    display: none;
+  }
+  nav {
+    width: 100%;
+    margin: 0;
+    -ms-grid-columns: fit-content(80px) auto fit-content(40px) 0;
+        grid-template-columns: fit-content(80px) auto fit-content(40px) 0;
+  }
+  .hamburger {
+    display: none;
+  }
+  .navigation {
+    display: none;
+  }
+  form input[type=text] {
+    font-size: 100%;
+  }
+  .mobile-hamburger {
+    display: inline;
+    font-size: 40px;
+    padding: 0 20px;
+  }
+  .main-content {
+    height: 118vh;
+  }
+  .image-slide {
+    -o-object-fit: cover;
+       object-fit: cover;
+    width: 100%;
+    height: 50vh;
+  }
+  .dots {
+    display: none;
+  }
+  .prev,
+  .next {
+    position: absolute;
+    top: 25%;
+  }
+  .snippet {
+    width: 100%;
+    -webkit-box-shadow: 5px 10px 8px #888888;
+            box-shadow: 5px 10px 8px #888888;
+  }
+  .about {
+    width: 95vw;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-size: .8rem;
+  }
 }
 /*# sourceMappingURL=main.css.map */
