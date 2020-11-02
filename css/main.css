@@ -358,8 +358,8 @@ form button {
           align-items: center;
   width: 80%;
   margin: auto;
-  -ms-grid-columns: (minmax(400px, 1fr))[auto-fill];
-      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  -ms-grid-columns: (minmax(370px, 1fr))[auto-fill];
+      grid-template-columns: repeat(auto-fill, minmax(370px, 1fr));
   -ms-grid-rows: 1fr 1fr 1fr;
       grid-template-rows: 1fr 1fr 1fr;
   grid-gap: 20px;
@@ -390,9 +390,24 @@ form button {
 }
 
 .partners {
-  width: 95vw;
+  width: 80vw;
   margin: auto;
   text-align: center;
+}
+
+footer {
+  width: 90vw;
+  margin: auto;
+  padding: 20px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 10px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 14px;
 }
 
 @media (max-width: 800px) {
